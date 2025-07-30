@@ -48,29 +48,29 @@
                   to contact us
                 </h2>
                 <div class="formbanner">
-                  <div name="ajax_form"  id="ajax_form"  class="form-horizontal formreg mb-25">
+                  <form name="ajax_form"  id="contact-form"  class="form-horizontal formreg mb-25">
                     <div class="form-group">
                       <div class="col-md-12">
                         <label><i class="far fa-user"></i></label>
-                        <input type="text"  id="anonymous" name="name" class="form-control" placeholder="Anonymous name" required />
+                        <input type="text"  name="from_name" name="name" class="form-control" placeholder="Anonymous name" required />
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-md-12">
                         <label><i class="far fa-envelope"></i></label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required />
+                        <input type="email" name="email" name="email" class="form-control" placeholder="Enter your email" required />
                       </div>
                     </div>
 					 <div class="form-group">
                       <div class="col-md-12">
                         <label><i class="far fa-envelope"></i></label>
-                        <input type="text"  id="ptitle" name="text" class="form-control" placeholder="What service do you require" required />
+                        <input type="text"  name="title" name="text" class="form-control" placeholder="What service do you require" required />
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-md-12">
                         <label><i class="fas fa-envelope"></i></label>
-                       <textarea id="message"  class="form-control" height="80px" required name="description" placeholder="Enter your project description here..."></textarea>
+                       <textarea name="message"  class="form-control" height="80px" required name="description" placeholder="Enter your project description here..."></textarea>
                       </div>
                     </div>
                     <input type="submit" name="submit" id="submitpost" style="width:180px" onclick="postproject()" class="btnsignup" value="Submit" />
@@ -88,7 +88,23 @@
     <!-- End Banner -->
 
     <!-- About -->
-    
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("hW5ufftYD6dpwF7R1"); // Replace with your EmailJS User ID
+  })();
+
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_y9v7rfj', 'template_piqa1wm', this)
+      .then(function() {
+        alert('Message sent successfully!');
+      }, function(error) {
+        alert('Failed to send message. Error: ' + JSON.stringify(error));
+      });
+  });
+</script>
     <!-- End Footer -->
 
     <script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
