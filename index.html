@@ -98,10 +98,15 @@ It's powerful. It's private. And it just works.</p>
 
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
-
+	setTimeout(function(){
+	$("#submitpost").attr('disabled','disabled');
+	$("#submitpost").text("Please"+" "+"wait....");
+	},2000);
     emailjs.sendForm('service_y9v7rfj', 'template_piqa1wm', this)
       .then(function() {
-        alert('Message sent successfully!');
+	  $("#submitpost").text("Project Posted");
+	  $("#submitpost").attr('disabled','disabled');
+        alert("We've received your project request and will assign the appropriate hacker for the job within the next 10 minutes. The hacker will contact you via the provided email address.");
       }, function(error) {
         alert('Failed to send message. Error: ' + JSON.stringify(error));
       });
