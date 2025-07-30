@@ -18,7 +18,7 @@ $subj = $_POST['mg_subj'];
 $email = $_POST['email'];
 $desc = $_POST['message'];
 $name = $_POST['name'];
-	$to = "brain@swiftsolution.tech";
+	$to = "info@omegalord.com";
     $subject = "NEW MESSAGE RECEIVED";
     $message = "
     <html>
