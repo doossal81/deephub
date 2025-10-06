@@ -192,9 +192,201 @@
 
     <script src="dist/js/main.min.js"></script>
 <script async src='https://www.googletagmanager.com/gtag/js?id=G-CFBJNKSYBN'></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-CFBJNKSYBN', { 'anonymize_ip': true });</script>
-<div id="banner" class="banner-outer"><div class="banner-inner"><a class="banner-link" href="#"><span>CONNECT WITH A HACKER</span><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><path fill="#6366F1" fill-rule="evenodd" d="m5.979 10.184-.895-.885 3.108-3.107H.386V4.899h7.806L5.084 1.797l.895-.89 4.639 4.639z"/></svg></a><button onclick="closeBanner()"><span class="sr-only">Close</span><svg viewBox="0 0 16 16" width="16" height="16"><path fill="#64748B" d="M12.72 3.293a1 1 0 00-1.415 0L8.012 6.586 4.72 3.293a1 1 0 00-1.414 1.414L6.598 8l-3.293 3.293a1 1 0 101.414 1.414l3.293-3.293 3.293 3.293a1 1 0 001.414-1.414L9.426 8l3.293-3.293a1 1 0 000-1.414z"></path></svg></button></div></div>
 <style>@import url(https://fonts.googleapis.com/css2?family=Inter:wght@500&amp;display=swap);.banner-outer{position:fixed;bottom:0;right:0;width:100%;z-index:60}.banner-inner{display:flex;justify-items:center;align-items:center;background:#0f172a;padding:12px 16px;border-radius:2px;font-size:14px;font-family:Inter,sans-serif;font-weight:500;box-shadow:0 10px 15px -3px rgb(0 0 0 / .1),0 4px 6px -4px rgb(0 0 0 / .1)}.banner-link{flex-grow:1;display:flex;color:#04ff00;justify-items:center;align-items:center;text-decoration:none;}.banner-link:hover{text-decoration:none}.banner-link>svg{margin-left:8px}.banner-inner button{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0;margin-left:24px;padding-left:8px;border:none;cursor:pointer;border-left:1px solid #334155;-webkit-appearance:button;background-color:transparent;background-image:none}.banner-inner button span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}@media screen and (min-width:768px){.banner-outer{bottom:32px;right:48px;width:auto}}</style><script>function closeBanner(){document.getElementById("banner").remove()}</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cd02fa8dc18726f","version":"2024.8.0","r":1,"serverTiming":{"name":{"cfExtPri":true,"cfL4":true}},"token":"59cc17d45d734f9ba118c63036ab1b84","b":1}' crossorigin="anonymous"></script>
+  <style>
+    :root{
+      --wa-bg: #25D366; /* WhatsApp green */
+      --wa-foreground: #ffffff;
+      --wa-accent: #128C7E;
+      --widget-size: 64px;
+      --widget-gap: 20px;
+      --font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    /* Reset small */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--font-family)}
+
+    /* Floating button container */
+    .wa-container{
+      position:fixed;
+      right:var(--widget-gap);
+      bottom:var(--widget-gap);
+      z-index:99999;
+      display:flex;
+      align-items:flex-end;
+      gap:12px;
+      flex-direction:column;
+      pointer-events:none; /* allow only interactive children */
+    }
+
+    /* Chat preview card */
+    .wa-card{
+      pointer-events:auto;
+      max-width:320px;
+      width:clamp(220px, 28vw, 320px);
+      background:linear-gradient(180deg,#fff,#fbfbfb);
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
+      padding:12px;
+      transform-origin:100% 100%;
+      transition:transform .2s ease,opacity .2s ease;
+      opacity:0;
+      transform:translateY(8px) scale(0.98);
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .wa-card.show{opacity:1;transform:translateY(0) scale(1)}
+    .wa-avatar{
+      width:48px;height:48px;border-radius:12px;background:var(--wa-accent);display:flex;align-items:center;justify-content:center;color:var(--wa-foreground);font-weight:700;flex-shrink:0
+    }
+    .wa-meta{flex:1}
+    .wa-title{font-weight:700;margin:0;font-size:14px}
+    .wa-msg{margin:2px 0 0;font-size:13px;color:#333;line-height:1.2}
+    .wa-actions{display:flex;gap:8px;margin-top:8px}
+    .wa-btn{
+      appearance:none;border:0;padding:8px 10px;border-radius:8px;font-size: 14px; font-weight:600;cursor:pointer;background:var(--wa-bg);color:var(--wa-foreground);display:inline-flex;align-items:center;gap:8px;text-decoration:none
+    }
+    .wa-btn.secondary{background:#f1f3f4;color:#111}
+
+    /* Floating round button */
+    .wa-toggle{
+      pointer-events:auto;
+      width:var(--widget-size);
+      height:var(--widget-size);
+      border-radius:50%;
+      display:inline-grid;place-items:center;
+      background:var(--wa-bg);
+      color:var(--wa-foreground);
+      box-shadow:0 6px 18px rgba(37,211,102,0.28);
+      border:4px solid rgba(255,255,255,0.08);
+      cursor:pointer;
+      transition:transform .14s cubic-bezier(.2,.9,.3,1);
+    }
+    .wa-toggle:active{transform:scale(.96)}
+    .wa-toggle:focus{outline:3px solid rgba(18,140,126,0.12);outline-offset:4px}
+
+    /* Small unread badge */
+    .wa-badge{
+      position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;color:#fff;font-size:11px;display:inline-grid;place-items:center;padding:0 5px;
+    }
+
+    /* Accessibility: reduce motion */
+    @media (prefers-reduced-motion:reduce){
+      .wa-card,.wa-toggle{transition:none}
+    }
+
+    /* Responsiveness: move to center on small screens */
+    @media(max-width:420px){
+      .wa-container{right:10px;left:10px;bottom:18px;align-items:center}
+      .wa-card{width:100%;max-width:800px;border-radius:14px}
+    }
+  </style>
+
+  <!-- Widget container -->
+  <div class="wa-container" aria-live="polite">
+
+    <!-- Chat preview card (optional) -->
+    <div class="wa-card" id="waCard" aria-hidden="true">
+      <div class="wa-avatar" aria-hidden="true">WA</div>
+      <div class="wa-meta">
+        <p class="wa-title">Chat with us on WhatsApp</p>
+        <p class="wa-msg">Hi 👋 — click "Open WhatsApp" to start a conversation. We're usually online Mon–Fri.</p>
+        <div class="wa-actions">
+          <a id="waOpenBtn" class="wa-btn" role="button" href="https://wa.me/message/5N6QPK3FAMCFO1" target="_blank" rel="noopener noreferrer">Open WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5L9.5 14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 3h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+          <button id="waClosePreview" class="wa-btn secondary" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating WhatsApp toggle -->
+    <button id="waToggle" class="wa-toggle" aria-expanded="false" aria-controls="waCard" aria-label="Open WhatsApp chat">
+      <!-- Inline WhatsApp SVG icon -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20.52 3.48A11.86 11.86 0 0 0 12 .5C6.21.5 1.5 5.21 1.5 11c0 1.94.5 3.74 1.42 5.32L.5 23.5l7.54-2.01A11.86 11.86 0 0 0 12 22.5c5.79 0 10.5-4.71 10.5-10.5 0-2.83-1.04-5.45-2.98-7.02z" fill="currentColor" opacity="0.12"></path>
+        <path d="M17.26 14.34c-.29-.15-1.71-.84-1.97-.93-.26-.09-.45-.14-.64.14-.19.28-.73.93-.9 1.12-.17.19-.33.22-.62.07-.29-.15-1.22-.45-2.32-1.43-.86-.76-1.44-1.7-1.61-1.99-.17-.28-.02-.43.12-.57.12-.12.27-.31.41-.46.13-.15.19-.25.29-.42.1-.17.05-.32-.02-.46-.07-.14-.64-1.52-.88-2.09-.23-.54-.47-.47-.64-.48l-.55-.01c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.44 0 1.43 1.03 2.82 1.17 3.02.14.2 2.02 3.25 4.9 4.56 2.88 1.31 2.88.87 3.4.82.52-.05 1.69-.69 1.93-1.36.24-.67.24-1.25.17-1.36-.07-.12-.26-.19-.55-.34z" fill="currentColor"></path>
+      </svg>
+      <span class="wa-badge" id="waBadge" style="display:none"></span>
+    </button>
+
+  </div>
+
+  <script>
+    (function(){
+      const toggle = document.getElementById('waToggle');
+      const card = document.getElementById('waCard');
+      const closePreview = document.getElementById('waClosePreview');
+      const badge = document.getElementById('waBadge');
+      const openBtn = document.getElementById('waOpenBtn');
+
+      // Configuration - change these if you need
+      const WA_LINK = 'https://wa.me/message/5N6QPK3FAMCFO1';
+      const SHOW_BADGE = true; // show unread badge
+
+      // Initialize
+      openBtn.setAttribute('href', WA_LINK);
+
+      // show badge optionally
+      if(SHOW_BADGE){ badge.style.display = 'inline-grid'; }
+
+      // Toggle preview visibility
+      function showPreview(){
+        card.classList.add('show');
+        card.setAttribute('aria-hidden','false');
+        toggle.setAttribute('aria-expanded','true');
+      }
+      function hidePreview(){
+        card.classList.remove('show');
+        card.setAttribute('aria-hidden','true');
+        toggle.setAttribute('aria-expanded','false');
+      }
+
+      // Clicking the round button toggles the preview on desktop; on small screens it opens WhatsApp directly
+      toggle.addEventListener('click', function(e){
+        const small = window.matchMedia('(max-width:420px)').matches;
+        if(small){
+          // Open WhatsApp in new tab on phones for best UX
+          window.open(WA_LINK,'_blank','noopener');
+          return;
+        }
+        if(card.classList.contains('show')) hidePreview(); else showPreview();
+      });
+
+      // Close preview action
+      closePreview.addEventListener('click', hidePreview);
+
+      // Close preview if user clicks outside
+      document.addEventListener('click', function(e){
+        if(!card.contains(e.target) && !toggle.contains(e.target)){
+          hidePreview();
+        }
+      }, true);
+
+      // Keyboard accessibility
+      toggle.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle.click(); }
+      });
+
+      // Optional: remove badge when user opens chat
+      openBtn.addEventListener('click', function(){ badge.style.display = 'none'; });
+
+      // Small friendly auto-show after page load (non-intrusive)
+      window.addEventListener('load', function(){
+        // only show preview briefly on desktop once
+        if(!window.matchMedia('(max-width:420px)').matches){
+          setTimeout(()=>{ showPreview(); setTimeout(hidePreview, 3500); }, 1200);
+        }
+      });
+    })();
+  </script>
+
+
+
+
 </body>
 
 <!-- Mirrored from preview.cruip.com/solid/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Oct 2024 21:57:11 GMT -->
