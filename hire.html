@@ -19,19 +19,21 @@
     body {
       margin: 0;
       font-family: 'Inter', system-ui, sans-serif;
-      background: var(--background);
+      background: #000000;
       color: var(--text-color);
       line-height: 1.6;
     }
 
     header {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-    }
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    border-bottom: 12px solid green;
+}
 
     header h1 {
       font-size: 2rem;
       margin-bottom: .5rem;
+      color: #ffffff;
     }
 
     header p {
@@ -49,10 +51,11 @@
     }
 
     .contact-form, .contact-info {
-      background: var(--card-bg);
+      background: #000000;
       border-radius: var(--radius);
       box-shadow: 0 8px 20px rgba(0,0,0,0.05);
       padding: 2rem;
+      border: 6px solid #616a61;
     }
 
     .contact-form h2, .contact-info h2 {
@@ -133,13 +136,29 @@
       font-size: 0.9rem;
       background: #f3f4f6;
     }
+	.hacker-phrase {
+           font-weight: bold;
+           color: #00ff00;
+           text-shadow: 0 0 10px #00ff00;
+           animation: blink 1s infinite alternate; /* Blink fade in/out */
+           transition: transform 0.3s ease-in-out; /* Smooth scale on hover */
+        }
+        .hacker-phrase:hover {
+            transform: scale(1.1); /* Enlarge on hover */
+        }
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
   </style>
 </head>
 <body>
 
   <header>
     <h1>Contact Us</h1>
-    <p>We’d love to hear from you! Fill out the form below or reach us directly.</p>
+   <div class="hacker-phrase">
+        Hire a Pro Hacker Now – Unlock Any Digital Door with DeepHub.online!
+    </div>
   </header>
 
   <section class="contact-container">
@@ -148,7 +167,7 @@
       <h2>Send us a Message</h2>
       <form onsubmit="event.preventDefault(); alert('Message submitted!');">
         <div>
-          <label for="name">Full Name</label>
+          <label for="name">Anonymous Name</label>
           <input type="text" id="name" name="name" required>
         </div>
         <div>
@@ -156,11 +175,11 @@
           <input type="email" id="email" name="email" required>
         </div>
         <div>
-          <label for="subject">Subject</label>
+          <label for="subject">Proeject Title</label>
           <input type="text" id="subject" name="subject">
         </div>
         <div>
-          <label for="message">Message</label>
+          <label for="message">Project Description</label>
           <textarea id="message" name="message" required></textarea>
         </div>
         <button type="submit">Send Message</button>
@@ -172,16 +191,13 @@
       <ul>
         <li>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a1 1 0 0 1 1 .75l1.13 4.52a1 1 0 0 1-.27.95l-2.2 2.2a16 16 0 0 0 7.27 7.27l2.2-2.2a1 1 0 0 1 .95-.27l4.52 1.13a1 1 0 0 1 .75 1z"></path></svg>
-          +1 (234) 567-8901
+          +1 (613) 494-3707
         </li>
         <li>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><path d="M22 6l-10 7L2 6"></path></svg>
-          contact@example.com
+          Info@deephub.com
         </li>
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          123 Main Street, Cityville, USA
-        </li>
+      
       </ul>
     </div>
 
