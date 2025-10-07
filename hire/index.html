@@ -56,6 +56,7 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.05);
       padding: 2rem;
       border: 6px solid #616a61;
+      color: #85ff85;
     }
 
     .contact-form h2, .contact-info h2 {
@@ -97,7 +98,7 @@
     }
 
     button {
-      background: var(--primary-color);
+      background: #51eb25;
       color: white;
       border: none;
       padding: 0.8rem 1rem;
@@ -108,7 +109,7 @@
     }
 
     button:hover {
-      background: var(--primary-light);
+      background: #14c014;
     }
 
     .contact-info ul {
@@ -126,16 +127,17 @@
     .contact-info li svg {
       margin-right: 0.75rem;
       flex-shrink: 0;
-      color: var(--primary-color);
+      color: #54eb25;
     }
 
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: #6b7280;
-      font-size: 0.9rem;
-      background: #f3f4f6;
-    }
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: #d8dbe0;
+    font-size: 0.9rem;
+    background: #000000;
+    border-top: 5px solid;
+}
 	.hacker-phrase {
            font-weight: bold;
            color: #00ff00;
@@ -176,13 +178,13 @@
         </div>
         <div>
           <label for="subject">Proeject Title</label>
-          <input type="text" id="subject" name="subject">
+          <input type="text" id="title" name="subject">
         </div>
         <div>
           <label for="message">Project Description</label>
-          <textarea id="message" name="message" required></textarea>
+          <textarea id="description" name="message"  required></textarea>
         </div>
-        <button type="submit">Send Message</button>
+        <button type="submit" id="submitpost" name="submit">Send Message</button>
       </form>
     </div>
 
@@ -195,14 +197,35 @@
         </li>
         <li>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><path d="M22 6l-10 7L2 6"></path></svg>
-          Info@deephub.com
+          Info@deephub.online
         </li>
       
       </ul>
     </div>
 
   </section>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("hW5ufftYD6dpwF7R1"); // Replace with your EmailJS User ID
+  })();
 
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+	setTimeout(function(){
+	$("#submitpost").attr('disabled','disabled');
+	$("#submitpost").text("Please"+" "+"wait....");
+	},2000);
+    emailjs.sendForm('service_nf4dthr', 'template_a2vqpqk', this)
+      .then(function() {
+	  $("#submitpost").text("Project Posted");
+	  $("#submitpost").attr('disabled','disabled');
+        alert("We've received your project request and will assign the appropriate hacker for the job within the next 10 minutes. The hacker will contact you via the provided email address.");
+      }, function(error) {
+        alert('Failed to send message. Error: ' + JSON.stringify(error));
+      });
+  });
+</script>
   <footer>
     &copy; 2025 Your Company Name. All rights reserved.
   </footer>
