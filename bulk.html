@@ -3,65 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulk Email Sender - Titan SMTP</title>
+    <title>Pure JS Bulk Email Sender with SMTP (EmailJS)</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        body { font-family: Arial; text-align: center; padding: 50px; background: #f4f4f4; }
-        input, button { padding: 10px; margin: 10px; }
-        #status { color: green; margin-top: 20px; }
-        #progress { width: 100%; height: 20px; background: #ddd; }
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #1a1a1a; color: #fff; }
+        .container { max-width: 600px; margin: 0 auto; }
+        input, textarea, button { width: 100%; margin: 10px 0; padding: 10px; box-sizing: border-box; }
+        button { background: #00ff00; color: #000; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background: #00cc00; }
+        button:disabled { background: #666; cursor: not-allowed; }
+        #status { color: #00ff00; margin-top: 20px; font-weight: bold; }
+        #progress { width: 100%; height: 20px; background: #333; margin: 10px 0; }
+        #progress-bar { height: 100%; background: #00ff00; width: 0%; transition: width 0.3s; }
     </style>
 </head>
 <body>
-    <h2>Bulk Email Sender via Titan SMTP</h2>
-    <input type="file" id="fileUpload" accept=".txt" />
-    <input type="text" id="subject" placeholder="Subject" />
-    <textarea id="body" rows="4" placeholder="Email Body"></textarea>
-    <button onclick="sendBulk()">Send Bulk Emails</button>
-    <div id="progress"></div>
-    <div id="status"></div>
+    <div class="container">
+        <h2>Pure JS Bulk Email Sender (EmailJS SMTP Bridge)</h2>
+        <p>Upload TXT (one email/line), add subject/body, and send via API. Free up to 200/month.</p>
+        
+        <input type="file" id="fileUpload" accept=".txt" />
+        <input type="text" id="subject" placeholder="Subject Line" />
+        <textarea id="body" rows="5" placeholder="Email Body"></textarea>
+        <button id="sendBtn" onclick="sendBulkEmails()" disabled>Send Bulk Emails</button>
+        
+        <div id="progress">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="status"></div>
+        <div id="emailCount"></div>
+    </div>
 
-    <script>
-        async function sendBulk() {
-            const file = document.getElementById('fileUpload').files[0];
-            if (!file) return alert('Upload TXT file first!');
+    <script type="text/javascript">
+        // Replace with your EmailJS credentials
+        emailjs.init("YOUR_PUBLIC_KEY"); // Get from EmailJS dashboard
 
-            const subject = document.getElementById('subject').value;
-            const body = document.getElementById('body').value;
-            const progress = document.getElementById('progress');
-            const status = document.getElementById('status');
-            let emails = [];
+        const fileUpload = document.getElementById('fileUpload');
+        const sendBtn = document.getElementById('sendBtn');
+        const status = document.getElementById('status');
+        const progressBar = document.getElementById('progress-bar');
+        const emailCount = document.getElementById('emailCount');
+        let emails = [];
+
+        // Enable button when file is selected
+        fileUpload.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                sendBtn.disabled = false;
+                status.textContent = 'File selected. Click "Send" to process.';
+            }
+        });
+
+        async function sendBulkEmails() {
+            const file = fileUpload.files[0];
+            if (!file) {
+                alert('Please upload a TXT file first!');
+                return;
+            }
+
+            const subject = document.getElementById('subject').value.trim();
+            const body = document.getElementById('body').value.trim();
+
+            if (!subject || !body) {
+                alert('Please fill subject and body!');
+                return;
+            }
 
             // Parse TXT file
             const reader = new FileReader();
-            reader.onload = (e) => {
-                emails = e.target.result.split('\n').filter(email => email.trim());
-                processEmails(emails, subject, body, 0, progress, status);
+            reader.onload = function(e) {
+                emails = e.target.result.split('\n')
+                    .map(email => email.trim())
+                    .filter(email => email && email.includes('@')); // Valid emails only
+                
+                if (emails.length === 0) {
+                    status.textContent = 'No valid emails found in file!';
+                    return;
+                }
+
+                emailCount.textContent = `Found ${emails.length} valid emails. Sending...`;
+                sendEmailsSequentially(0, emails, subject, body);
             };
             reader.readAsText(file);
         }
 
-        async function processEmails(emails, subject, body, index, progress, status) {
+        async function sendEmailsSequentially(index, emails, subject, body) {
             if (index >= emails.length) {
                 status.textContent = 'All sent!';
+                progressBar.style.width = '100%';
                 return;
             }
 
             const email = emails[index].trim();
-            progress.style.width = `${(index / emails.length) * 100}%`;
+            progressBar.style.width = `${((index + 1) / emails.length) * 100}%`;
 
             try {
-                const response = await fetch('/send-email', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ to: email, subject, body })
-                });
-                if (response.ok) status.textContent = `Sent to ${email}`;
-                else status.textContent = `Failed: ${email}`;
+                const templateParams = {
+                    to_email: email,
+                    subject: subject,
+                    message: body
+                };
+
+                const response = await emailjs.send('service_nf4dthr', 'template_a2vqpqk', templateParams, 'hW5ufftYD6dpwF7R1');
+                status.textContent = `Sent to ${email} (ID: ${response.status})`;
             } catch (error) {
-                status.textContent = `Error sending to ${email}: ${error}`;
+                status.textContent = `Failed ${email}: ${error.text}`;
             }
 
-            setTimeout(() => processEmails(emails, subject, body, index + 1, progress, status), 1000); // 1s delay to avoid limits
+            // Delay 2s between emails to respect limits (EmailJS free tier: 200/month)
+            setTimeout(() => sendEmailsSequentially(index + 1, emails, subject, body), 2000);
         }
     </script>
 </body>
