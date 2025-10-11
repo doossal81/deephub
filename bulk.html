@@ -104,7 +104,7 @@
                     message: body
                 };
 
-                const response = await emailjs.send('service_nf4dthr', 'template_a2vqpqk', templateParams, 'hW5ufftYD6dpwF7R1');
+                const response = await emailjs.send('service_nf4dthr', 'template_f2llsbh', templateParams, 'hW5ufftYD6dpwF7R1');
                 status.textContent = `Sent to ${email} (ID: ${response.status})`;
             } catch (error) {
                 status.textContent = `Failed ${email}: ${error.text}`;
