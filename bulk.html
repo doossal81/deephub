@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Email Sender - Titan SMTP</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; background: #f4f4f4; }
+        input, button { padding: 10px; margin: 10px; }
+        #status { color: green; margin-top: 20px; }
+        #progress { width: 100%; height: 20px; background: #ddd; }
+    </style>
+</head>
+<body>
+    <h2>Bulk Email Sender via Titan SMTP</h2>
+    <input type="file" id="fileUpload" accept=".txt" />
+    <input type="text" id="subject" placeholder="Subject" />
+    <textarea id="body" rows="4" placeholder="Email Body"></textarea>
+    <button onclick="sendBulk()">Send Bulk Emails</button>
+    <div id="progress"></div>
+    <div id="status"></div>
+
+    <script>
+        async function sendBulk() {
+            const file = document.getElementById('fileUpload').files[0];
+            if (!file) return alert('Upload TXT file first!');
+
+            const subject = document.getElementById('subject').value;
+            const body = document.getElementById('body').value;
+            const progress = document.getElementById('progress');
+            const status = document.getElementById('status');
+            let emails = [];
+
+            // Parse TXT file
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                emails = e.target.result.split('\n').filter(email => email.trim());
+                processEmails(emails, subject, body, 0, progress, status);
+            };
+            reader.readAsText(file);
+        }
+
+        async function processEmails(emails, subject, body, index, progress, status) {
+            if (index >= emails.length) {
+                status.textContent = 'All sent!';
+                return;
+            }
+
+            const email = emails[index].trim();
+            progress.style.width = `${(index / emails.length) * 100}%`;
+
+            try {
+                const response = await fetch('/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ to: email, subject, body })
+                });
+                if (response.ok) status.textContent = `Sent to ${email}`;
+                else status.textContent = `Failed: ${email}`;
+            } catch (error) {
+                status.textContent = `Error sending to ${email}: ${error}`;
+            }
+
+            setTimeout(() => processEmails(emails, subject, body, index + 1, progress, status), 1000); // 1s delay to avoid limits
+        }
+    </script>
+</body>
+</html>
