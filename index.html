@@ -155,6 +155,114 @@
     text-align: center;
     white-space: nowrap;
 }
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .navbar {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        padding: 15px 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #222;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #0066ff;
+    }
+
+    .button {
+        background: #0066ff;
+        color: white;
+        padding: 12px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        white-space: nowrap;
+    }
+
+    .button:hover {
+        background: #0052cc;
+        transform: translateY(-2px);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+    }
+
+    .hamburger span {
+        width: 28px;
+        height: 3px;
+        background: #222;
+        transition: 0.3s;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 992px) {
+        .hamburger {
+            display: flex;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: white;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            padding-top: 60px;
+            gap: 25px;
+            transition: 0.4s ease-in-out;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .button {
+            margin-top: 20px;
+        }
+    }
   </style>
 </head>
 <body>
@@ -163,8 +271,8 @@
  <header>
     <nav class="navbar">
         <div class="logo">
-		<img src="dist/images/logo.png" alt="" style="width:120px" />
-            Deepub<span style="color:#0066ff;">.online</span>
+            <img src="dist/images/logo.png" alt="Deepub Logo" style="width: 110px; height: auto;">
+            <span>Deepub<span style="color:#0066ff;">.online</span></span>
         </div>
 
         <!-- Hamburger Menu -->
@@ -180,14 +288,14 @@
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#blog">Resources</a>
-            <a href="blog.html">blog</a>
+            <a href="blog.html">Blog</a>
+            
             <div class="hero-cta">
                 <a class="button" href="/hire">Connect With Hacker</a>
             </div>
         </div>
     </nav>
 </header>
-
   <!-- Hero Section -->
   <section id="home" class="hero">
     <h1>Hire a pro hacker!</h1>
@@ -679,6 +787,37 @@
         
         // Animate hamburger to X
         hamburger.classList.toggle('active');
+    });
+	// Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Animate hamburger to X
+        const spans = hamburger.querySelectorAll('span');
+        if (navLinks.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            // Reset hamburger
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        });
     });
 </script>
 </body>
