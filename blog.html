@@ -1,174 +1,1349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpyPredator - Blog | Ethical Hacking Insights</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        .blog-card {
-            transition: all 0.3s ease;
-        }
-        .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Deepub.online | Cyber Security Insights & Hacking Resources</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Blog - Deepub.online | Cyber Security Insights & Hacking Resources">
+  <meta name="description" content="Explore expert articles on phone hacking, social media security, email cracking, cryptocurrency recovery, and digital forensics. Stay informed with Deepub.online's cyber insights.">
+  <meta name="keywords" content="hacking blog, cyber security, phone hacking guide, social media security, email hacking tutorial, cryptocurrency recovery, digital forensics, ethical hacking resources">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Deepub.online">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog - Deepub.online | Cyber Security Insights">
+  <meta property="og:description" content="Expert articles on phone hacking, social media security, email cracking, and more.">
+  <meta property="og:image" content="https://Deepub.online/dist/images/blog-og.jpg">
+  <meta property="og:url" content="https://Deepub.online/blog">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Deepub.online">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog - Deepub.online | Cyber Security Insights">
+  <meta name="twitter:description" content="Expert articles on hacking, security, and digital forensics.">
+  <meta name="twitter:image" content="https://Deepub.online/dist/images/blog-twitter.jpg">
+  
+  <!-- Canonical -->
+  <link rel="canonical" href="https://Deepub.online/blog">
+  
+  <!-- Schema.org BlogPosting Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Deepub.online Blog",
+    "description": "Cyber security insights, hacking tutorials, and digital forensics resources",
+    "url": "https://Deepub.online/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Deepub.online",
+      "logo": "https://Deepub.online/dist/images/logo.png"
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "The Underground World of Digital Services",
+        "datePublished": "2025-01-15",
+        "author": { "@type": "Organization", "name": "Deepub.online" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Hack a Phone Remotely",
+        "datePublished": "2025-01-10",
+        "author": { "@type": "Organization", "name": "Deepub.online" }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --primary: #0066ff;
+      --primary-dark: #0044cc;
+      --primary-light: #3399ff;
+      --accent: #00d4ff;
+      --dark: #0a0e27;
+      --dark-2: #111638;
+      --dark-3: #1a1f4e;
+      --grey: #f0f4ff;
+      --grey-2: #e8edf5;
+      --text: #1a1a2e;
+      --text-light: #555577;
+      --white: #ffffff;
+      --gradient-1: linear-gradient(135deg, #0a0e27 0%, #1a1f4e 50%, #0a0e27 100%);
+      --gradient-2: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+      --gradient-3: linear-gradient(135deg, #0a0e27 0%, #0066ff 100%);
+      --shadow: 0 10px 40px rgba(0, 102, 255, 0.15);
+      --shadow-light: 0 5px 20px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+      --radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--grey);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 14, 39, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 14, 39, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      width: 45px;
+      height: auto;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-2);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--white);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--gradient-2);
+      color: var(--white) !important;
+      padding: 10px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+    }
+
+    .nav-cta::after { display: none !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    /* ===== BLOG HERO ===== */
+    .blog-hero {
+      background: var(--gradient-1);
+      padding: 140px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><g fill="none" stroke="rgba(0,102,255,0.05)" stroke-width="2"><path d="M0 0L800 800M800 0L0 800"/><circle cx="400" cy="400" r="200"/><circle cx="400" cy="400" r="400"/></g></svg>') center/cover;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .blog-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .blog-hero-badge {
+      display: inline-block;
+      background: rgba(0, 102, 255, 0.15);
+      border: 1px solid rgba(0, 102, 255, 0.3);
+      color: var(--accent);
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .blog-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .blog-hero h1 span {
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .blog-hero p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ===== BLOG CONTENT ===== */
+    .blog-main {
+      padding: 60px 0;
+    }
+
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+    }
+
+    /* ===== BLOG POSTS ===== */
+    .blog-posts {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .blog-post-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .blog-post-image {
+      width: 100%;
+      height: 300px;
+      background: var(--gradient-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-post-image i {
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .blog-post-image .category-tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--gradient-2);
+      color: var(--white);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .blog-post-body {
+      padding: 30px;
+    }
+
+    .blog-post-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .blog-post-meta i {
+      margin-right: 5px;
+      color: var(--primary);
+    }
+
+    .blog-post-body h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .blog-post-body h2 a {
+      color: var(--dark);
+      transition: var(--transition);
+    }
+
+    .blog-post-body h2 a:hover {
+      color: var(--primary);
+    }
+
+    .blog-post-body p {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .blog-post-body .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .blog-post-body .read-more:hover {
+      gap: 12px;
+      color: var(--primary-dark);
+    }
+
+    /* ===== SIDEBAR ===== */
+    .blog-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .sidebar-widget {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 25px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-widget h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--grey);
+    }
+
+    .sidebar-widget h3 span {
+      color: var(--primary);
+    }
+
+    /* Search Widget */
+    .search-widget form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-widget input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--grey-2);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-widget input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    }
+
+    .search-widget button {
+      background: var(--gradient-2);
+      color: var(--white);
+      border: none;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-widget button:hover {
+      opacity: 0.9;
+    }
+
+    /* Categories Widget */
+    .categories-widget ul li {
+      margin-bottom: 12px;
+    }
+
+    .categories-widget ul li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-light);
+      transition: var(--transition);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    .categories-widget ul li a:hover {
+      background: var(--grey);
+      color: var(--primary);
+    }
+
+    .categories-widget ul li a span {
+      background: var(--grey);
+      padding: 2px 10px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Recent Posts Widget */
+    .recent-post {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--grey);
+    }
+
+    .recent-post:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .recent-post-image {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-3);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .recent-post-image i {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .recent-post-info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .recent-post-info h4 a {
+      color: var(--dark);
+      transition: var(--transition);
+    }
+
+    .recent-post-info h4 a:hover {
+      color: var(--primary);
+    }
+
+    .recent-post-info span {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* Tags Widget */
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tags-cloud a {
+      background: var(--grey);
+      color: var(--text-light);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .tags-cloud a:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* CTA Widget */
+    .cta-widget {
+      background: var(--gradient-1);
+      color: var(--white);
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .cta-widget h3 {
+      color: var(--white) !important;
+      border-bottom: none !important;
+    }
+
+    .cta-widget p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-widget .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient-2);
+      color: var(--white);
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .cta-widget .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+    }
+
+    /* ===== PAGINATION ===== */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 50px;
+    }
+
+    .pagination a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      color: var(--text-light);
+      font-weight: 600;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .pagination a:hover {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    .pagination a.active {
+      background: var(--gradient-2);
+      color: var(--white);
+      border: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 80px 20px 30px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .footer-col p {
+      line-height: 1.8;
+      font-size: 0.9rem;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255, 255, 255, 0.6);
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.85rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* ===== WHATSAPP WIDGET ===== */
+    .wa-container {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 99999;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      flex-direction: column;
+      pointer-events: none;
+    }
+
+    .wa-card {
+      pointer-events: auto;
+      max-width: 320px;
+      width: clamp(220px, 28vw, 320px);
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      padding: 12px;
+      transform-origin: 100% 100%;
+      transition: transform .2s ease, opacity .2s ease;
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .wa-card.show { opacity: 1; transform: translateY(0) scale(1); }
+
+    .wa-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--gradient-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .wa-meta { flex: 1; }
+    .wa-title { font-weight: 700; margin: 0; font-size: 14px; }
+    .wa-msg { margin: 2px 0 0; font-size: 13px; color: #333; line-height: 1.2; }
+
+    .wa-actions { display: flex; gap: 8px; margin-top: 8px; }
+
+    .wa-btn {
+      appearance: none;
+      border: 0;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #25D366;
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .wa-btn.secondary { background: #f1f3f4; color: #111; }
+
+    .wa-toggle {
+      pointer-events: auto;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: #25D366;
+      color: var(--white);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.28);
+      border: 4px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: transform .14s cubic-bezier(.2, .9, .3, 1);
+    }
+
+    .wa-toggle:active { transform: scale(.96); }
+
+    .wa-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      min-width: 18px;
+      height: 18px;
+      color: #fff;
+      font-size: 11px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 5px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .blog-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .hamburger { display: flex; }
+      
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding-top: 60px;
+        gap: 25px;
+        transition: left 0.4s ease;
+        z-index: 999;
+      }
+
+      .nav-links.active { left: 0; }
+
+      .blog-hero h1 { font-size: 2.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .blog-hero h1 { font-size: 2rem; }
+      .blog-hero p { font-size: 1rem; }
+      .blog-post-image { height: 200px; }
+      .blog-post-body h2 { font-size: 1.3rem; }
+      .blog-post-body { padding: 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .blog-hero { padding: 120px 15px 60px; }
+      .blog-hero h1 { font-size: 1.6rem; }
+      .blog-post-meta { flex-direction: column; gap: 5px; }
+      .pagination a { width: 38px; height: 38px; font-size: 0.85rem; }
+    }
+  </style>
 </head>
-<body class="bg-gray-950 text-gray-200">
+<body>
 
-    <!-- Navbar -->
-    <nav class="bg-black border-b border-gray-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="text-2xl font-bold">
-                Deepub<span class="text-blue-500">.online</span>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="dist/images/logo.png" alt="Deepub.online - Professional Hacking Services">
+        <span class="logo-text">Deepub<span>.online</span></span>
+      </a>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#process">How It Works</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="/hire" class="nav-cta">Hire Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== BLOG HERO ===== -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+      <div class="blog-hero-badge">📚 Our Blog</div>
+      <h1>Cyber Security <span>Insights</span> & Resources</h1>
+      <p>Stay informed with expert articles, tutorials, and guides on phone hacking, social media security, email cracking, cryptocurrency recovery, and digital forensics.</p>
+    </div>
+  </section>
+
+  <!-- ===== BLOG MAIN CONTENT ===== -->
+  <section class="blog-main">
+    <div class="container">
+      <div class="blog-layout">
+        <!-- Main Posts -->
+        <div class="blog-posts">
+          
+          <!-- Blog Post 1 -->
+          <article class="blog-post-card">
+            <div class="blog-post-image" style="background: linear-gradient(135deg, #0a0e27 0%, #0066ff 100%);">
+              <i class="fas fa-shield-halved"></i>
+              <span class="category-tag">Phone Hacking</span>
             </div>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <a href="index.html" class="hover:text-blue-400 transition">Home</a>
-				<a href="index.html#about" class="hover:text-blue-400 transition">About Us</a>
-                <a href="index.html#services" class="hover:text-blue-400 transition">Services</a>
-				  <a href="index.html#blog" class="hover:text-blue-400 transition">Resources</a>
-                <a href="blog.html" class="text-blue-400 font-medium">Blog</a>
-              
-                
+            <div class="blog-post-body">
+              <div class="blog-post-meta">
+                <span><i class="fas fa-calendar"></i> January 15, 2025</span>
+                <span><i class="fas fa-user"></i> Deepub Team</span>
+                <span><i class="fas fa-comment"></i> 12 Comments</span>
+              </div>
+              <h2><a href="#">The Underground World of Digital Services: A Deep Dive into Modern Hacking Capabilities</a></h2>
+              <p>Remote phone access has become one of the most sought-after hacking services in the digital age. Whether for monitoring children, investigating infidelity, or corporate security, the ability to access a smartphone remotely provides unprecedented insight into someone's digital life...</p>
+              <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
             </div>
+          </article>
+
+          <!-- Blog Post 2 -->
+          <article class="blog-post-card">
+            <div class="blog-post-image" style="background: linear-gradient(135deg, #1a1f4e 0%, #00d4ff 100%);">
+              <i class="fas fa-mobile-alt"></i>
+              <span class="category-tag">Social Media</span>
+            </div>
+            <div class="blog-post-body">
+              <div class="blog-post-meta">
+                <span><i class="fas fa-calendar"></i> January 10, 2025</span>
+                <span><i class="fas fa-user"></i> Deepub Team</span>
+                <span><i class="fas fa-comment"></i> 8 Comments</span>
+              </div>
+              <h2><a href="#">How to Hack a Phone Remotely: Complete Guide for 2025</a></h2>
+              <p>Modern remote access solutions involve spyware installation, zero-click exploits, network-based intrusion, and social engineering. Learn about the techniques professional hackers use and how they can help you regain access or monitor activity...</p>
+              <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Blog Post 3 -->
+          <article class="blog-post-card">
+            <div class="blog-post-image" style="background: linear-gradient(135deg, #0044cc 0%, #0066ff 100%);">
+              <i class="fas fa-envelope"></i>
+              <span class="category-tag">Email Security</span>
+            </div>
+            <div class="blog-post-body">
+              <div class="blog-post-meta">
+                <span><i class="fas fa-calendar"></i> January 5, 2025</span>
+                <span><i class="fas fa-user"></i> Deepub Team</span>
+                <span><i class="fas fa-comment"></i> 15 Comments</span>
+              </div>
+              <h2><a href="#">Email Hacking: Methods, Motivations, and How to Protect Yourself</a></h2>
+              <p>Email remains a primary target for digital intrusion due to the wealth of information it contains. Professional email hackers employ phishing simulation, password recovery exploits, session hijacking, and direct server access techniques...</p>
+              <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Blog Post 4 -->
+          <article class="blog-post-card">
+            <div class="blog-post-image" style="background: linear-gradient(135deg, #0a0e27 0%, #00d4ff 100%);">
+              <i class="fab fa-bitcoin"></i>
+              <span class="category-tag">Cryptocurrency</span>
+            </div>
+            <div class="blog-post-body">
+              <div class="blog-post-meta">
+                <span><i class="fas fa-calendar"></i> December 28, 2024</span>
+                <span><i class="fas fa-user"></i> Deepub Team</span>
+                <span><i class="fas fa-comment"></i> 20 Comments</span>
+              </div>
+              <h2><a href="#">Cryptocurrency Recovery: How to Get Your Lost Crypto Back</a></h2>
+              <p>Lost access to your cryptocurrency wallet? Our experts explain wallet access techniques, transaction tracing, key recovery methods, and exchange exploitation to help you recover your digital assets...</p>
+              <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Blog Post 5 -->
+          <article class="blog-post-card">
+            <div class="blog-post-image" style="background: linear-gradient(135deg, #1a1f4e 0%, #0066ff 100%);">
+              <i class="fas fa-cloud"></i>
+              <span class="category-tag">Website Security</span>
+            </div>
+            <div class="blog-post-body">
+              <div class="blog-post-meta">
+                <span><i class="fas fa-calendar"></i> December 20, 2024</span>
+                <span><i class="fas fa-user"></i> Deepub Team</span>
+                <span><i class="fas fa-comment"></i> 10 Comments</span>
+              </div>
+              <h2><a href="#">Website Hacking Services: Beyond Basic Security</a></h2>
+              <p>Website hacking services have evolved far beyond simple defacement. Today's specialists offer vulnerability assessment, database access, admin panel control, competitive intelligence, and content modification...</p>
+              <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Blog Post 6 -->
+          <article class="blog-post-card">
+            <div class="blog-post-image" style="background: linear-gradient(135deg, #0044cc 0%, #00d4ff 100%);">
+              <i class="fas fa-graduation-cap"></i>
+              <span class="category-tag">Academic</span>
+            </div>
+            <div class="blog-post-body">
+              <div class="blog-post-meta">
+                <span><i class="fas fa-calendar"></i> December 15, 2024</span>
+                <span><i class="fas fa-user"></i> Deepub Team</span>
+                <span><i class="fas fa-comment"></i> 18 Comments</span>
+              </div>
+              <h2><a href="#">Academic Grade Modification: The Educational Underbelly</a></h2>
+              <p>Academic achievement has created a market for grade modification services. System access, record modification, transcript alteration, and system exploitation are among the services offered...</p>
+              <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#"><i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="blog-sidebar">
+          
+          <!-- Search Widget -->
+          <div class="sidebar-widget search-widget">
+            <h3>Search <span>Blog</span></h3>
+            <form>
+              <input type="text" placeholder="Search articles..." aria-label="Search">
+              <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="sidebar-widget categories-widget">
+            <h3>Categories</h3>
+            <ul>
+              <li><a href="#">Phone Hacking <span>12</span></a></li>
+              <li><a href="#">Social Media <span>8</span></a></li>
+              <li><a href="#">Email Security <span>10</span></a></li>
+              <li><a href="#">Website Hacking <span>6</span></a></li>
+              <li><a href="#">Cryptocurrency <span>5</span></a></li>
+              <li><a href="#">Academic Services <span>4</span></a></li>
+              <li><a href="#">General Security <span>15</span></a></li>
+            </ul>
+          </div>
+
+          <!-- Recent Posts Widget -->
+          <div class="sidebar-widget">
+            <h3>Recent <span>Posts</span></h3>
             
-            <a href="/hire" class="bg-blue-600 hover:bg-blue-700 px-6 py-2.5 rounded-lg font-medium transition">
-                Hire A Hacker
+            <div class="recent-post">
+              <div class="recent-post-image">
+                <i class="fas fa-shield-halved"></i>
+              </div>
+              <div class="recent-post-info">
+                <h4><a href="#">The Underground World of Digital Services</a></h4>
+                <span>January 15, 2025</span>
+              </div>
+            </div>
+
+            <div class="recent-post">
+              <div class="recent-post-image">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <div class="recent-post-info">
+                <h4><a href="#">How to Hack a Phone Remotely</a></h4>
+                <span>January 10, 2025</span>
+              </div>
+            </div>
+
+            <div class="recent-post">
+              <div class="recent-post-image">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="recent-post-info">
+                <h4><a href="#">Email Hacking Methods & Protection</a></h4>
+                <span>January 5, 2025</span>
+              </div>
+            </div>
+
+            <div class="recent-post">
+              <div class="recent-post-image">
+                <i class="fab fa-bitcoin"></i>
+              </div>
+              <div class="recent-post-info">
+                <h4><a href="#">Cryptocurrency Recovery Guide</a></h4>
+                <span>December 28, 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags Widget -->
+          <div class="sidebar-widget">
+            <h3>Popular <span>Tags</span></h3>
+            <div class="tags-cloud">
+              <a href="#">Phone Hacking</a>
+              <a href="#">Social Media</a>
+              <a href="#">Email Hack</a>
+              <a href="#">Cryptocurrency</a>
+              <a href="#">Website Security</a>
+              <a href="#">Grade Change</a>
+              <a href="#">GPS Tracking</a>
+              <a href="#">WhatsApp Hack</a>
+              <a href="#">Instagram</a>
+              <a href="#">Facebook</a>
+              <a href="#">Recovery</a>
+              <a href="#">Security</a>
+            </div>
+          </div>
+
+          <!-- CTA Widget -->
+          <div class="sidebar-widget cta-widget">
+            <h3>Need Help Now?</h3>
+            <p>Our team of experts is available 24/7 to handle your digital needs. Discreet, fast, and guaranteed results.</p>
+            <a href="/hire" class="btn">
+              <i class="fas fa-shield-halved"></i>
+              Hire a Hacker
             </a>
-        </div>
-    </nav>
+          </div>
 
-    <!-- Hero Banner -->
-    <div class="bg-gradient-to-br from-gray-900 to-black py-20">
-        <div class="max-w-4xl mx-auto text-center px-6">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Latest Cyber Insights</h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                In-depth articles on ethical hacking, digital security, remote access, and cybersecurity trends in 2026.
-            </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo" style="margin-bottom: 20px;">
+          <img src="dist/images/logo.png" alt="Deepub.online" style="width: 40px;">
+          <span class="logo-text" style="font-size: 1.3rem;">Deepub<span>.online</span></span>
         </div>
+        <p>Your trusted partner for professional digital security and access services. Discreet, effective, and results-driven since 2023.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#process">How It Works</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="index.html#services">Phone Hacking</a></li>
+          <li><a href="index.html#services">Social Media Hacking</a></li>
+          <li><a href="index.html#services">Email Hacking</a></li>
+          <li><a href="index.html#services">Website Hacking</a></li>
+          <li><a href="index.html#services">Cryptocurrency Recovery</a></li>
+          <li><a href="index.html#services">Custom Projects</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><a href="https://wa.me/+12894859160"><i class="fab fa-whatsapp"></i> WhatsApp: +12894859160</a></li>
+          <li><a href="mailto:contact@deepub.online"><i class="fas fa-envelope"></i> Email Us</a></li>
+          <li><a href="/hire"><i class="fas fa-file-alt"></i> Request Quote</a></li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Available 24/7 for urgent requests</p>
+        </div>
+      </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-
-            <!-- Main Blog Posts -->
-            <div class="lg:col-span-8 space-y-12">
-
-                <!-- Blog Post 1 -->
-                <div class="blog-card bg-gray-900 rounded-2xl overflow-hidden">
-                    <img src="https://picsum.photos/800/450?random=1" alt="WhatsApp Security" class="w-full h-64 object-cover">
-                    <div class="p-8">
-                        <div class="flex items-center gap-4 text-sm text-gray-400 mb-4">
-                            <span>June 15, 2026</span>
-                            <span class="bg-blue-900 text-blue-400 px-3 py-1 rounded-full text-xs">WhatsApp</span>
-                        </div>
-                        <h2 class="text-3xl font-semibold mb-4 leading-tight">How to Protect Your WhatsApp Account from Session Hijacking in 2026</h2>
-                        <p class="text-gray-400 line-clamp-3 mb-6">
-                            WhatsApp remains one of the most targeted platforms. Learn the latest hacking techniques and proven protection strategies used by security experts.
-                        </p>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium flex items-center gap-2">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Post 2 -->
-                <div class="blog-card bg-gray-900 rounded-2xl overflow-hidden">
-                    <img src="https://picsum.photos/800/450?random=2" alt="Remote Access" class="w-full h-64 object-cover">
-                    <div class="p-8">
-                        <div class="flex items-center gap-4 text-sm text-gray-400 mb-4">
-                            <span>June 10, 2026</span>
-                            <span class="bg-purple-900 text-purple-400 px-3 py-1 rounded-full text-xs">Remote Access</span>
-                        </div>
-                        <h2 class="text-3xl font-semibold mb-4 leading-tight">The Rise of Stealth Remote Access Tools in 2026</h2>
-                        <p class="text-gray-400 line-clamp-3 mb-6">
-                            A deep dive into next-generation undetectable monitoring tools and how they are changing digital investigations.
-                        </p>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium flex items-center gap-2">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Post 3 -->
-                <div class="blog-card bg-gray-900 rounded-2xl overflow-hidden">
-                    <img src="https://picsum.photos/800/450?random=3" alt="Instagram Hack" class="w-full h-64 object-cover">
-                    <div class="p-8">
-                        <div class="flex items-center gap-4 text-sm text-gray-400 mb-4">
-                            <span>June 5, 2026</span>
-                            <span class="bg-pink-900 text-pink-400 px-3 py-1 rounded-full text-xs">Instagram</span>
-                        </div>
-                        <h2 class="text-3xl font-semibold mb-4 leading-tight">Instagram Account Takeover Methods & Protection Guide 2026</h2>
-                        <p class="text-gray-400 line-clamp-3 mb-6">
-                            How hackers are bypassing Instagram security and what you can do to protect your account from being compromised.
-                        </p>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium flex items-center gap-2">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Sidebar -->
-            <div class="lg:col-span-4 space-y-8">
-                
-                <!-- Search -->
-                <div class="bg-gray-900 p-6 rounded-2xl">
-                    <h3 class="text-lg font-semibold mb-4">Search Articles</h3>
-                    <div class="relative">
-                        <input type="text" placeholder="Search blog..." 
-                               class="w-full bg-gray-800 border border-gray-700 rounded-xl px-5 py-4 focus:outline-none focus:border-blue-500">
-                        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Categories -->
-                <div class="bg-gray-900 p-6 rounded-2xl">
-                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-gray-800 px-4 py-2 rounded-full text-sm">WhatsApp Hacking</span>
-                        <span class="bg-gray-800 px-4 py-2 rounded-full text-sm">Remote Access</span>
-                        <span class="bg-gray-800 px-4 py-2 rounded-full text-sm">Instagram</span>
-                        <span class="bg-gray-800 px-4 py-2 rounded-full text-sm">GPS Tracking</span>
-                        <span class="bg-gray-800 px-4 py-2 rounded-full text-sm">Digital Forensics</span>
-                    </div>
-                </div>
-
-                <!-- Recent Posts -->
-                <div class="bg-gray-900 p-6 rounded-2xl">
-                    <h3 class="text-lg font-semibold mb-4">Recent Posts</h3>
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <img src="https://picsum.photos/80/80?random=4" class="w-20 h-20 object-cover rounded-lg">
-                            <div>
-                                <h4 class="line-clamp-2 text-sm font-medium">How to Detect Spyware on Your Phone</h4>
-                                <p class="text-xs text-gray-500 mt-1">June 12, 2026</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Pagination -->
-        <div class="flex justify-center mt-16">
-            <div class="flex gap-2">
-                <button class="px-5 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl">1</button>
-                <button class="px-5 py-3 bg-blue-600 text-white rounded-xl">2</button>
-                <button class="px-5 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl">3</button>
-                <button class="px-5 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl">Next →</button>
-            </div>
-        </div>
-
+    <div class="footer-bottom">
+      <p>&copy; 2026 Deepub.online. All Rights Reserved. | Securing Tomorrow, Today.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://wa.me/+12894859160" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="Signal"><i class="fas fa-comment"></i></a>
+      </div>
     </div>
-</section>
+  </footer>
 
+  <!-- ===== WHATSAPP WIDGET ===== -->
+  <div class="wa-container" aria-live="polite">
+    <div class="wa-card" id="waCard" aria-hidden="true">
+      <div class="wa-avatar" aria-hidden="true">WA</div>
+      <div class="wa-meta">
+        <p class="wa-title">Chat with us on WhatsApp</p>
+        <p class="wa-msg">Hi 👋 — click "Open WhatsApp" to start a conversation. We're usually online Mon–Fri.</p>
+        <div class="wa-actions">
+          <a id="waOpenBtn" class="wa-btn" role="button" href="https://wa.me/+12894859160?text=Hi%20I%20want%20to%20hire%20a%20hacker" target="_blank" rel="noopener noreferrer">
+            Open WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20.5 3.5L9.5 14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M15 3h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+          <button id="waClosePreview" class="wa-btn secondary" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="waToggle" class="wa-toggle" aria-expanded="false" aria-controls="waCard" aria-label="Open WhatsApp chat">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20.52 3.48A11.86 11.86 0 0 0 12 .5C6.21.5 1.5 5.21 1.5 11c0 1.94.5 3.74 1.42 5.32L.5 23.5l7.54-2.01A11.86 11.86 0 0 0 12 22.5c5.79 0 10.5-4.71 10.5-10.5 0-2.83-1.04-5.45-2.98-7.02z" fill="currentColor" opacity="0.12"></path>
+        <path d="M17.26 14.34c-.29-.15-1.71-.84-1.97-.93-.26-.09-.45-.14-.64.14-.19.28-.73.93-.9 1.12-.17.19-.33.22-.62.07-.29-.15-1.22-.45-2.32-1.43-.86-.76-1.44-1.7-1.61-1.99-.17-.28-.02-.43.12-.57.12-.12.27-.31.41-.46.13-.15.19-.25.29-.42.1-.17.05-.32-.02-.46-.07-.14-.64-1.52-.88-2.09-.23-.54-.47-.47-.64-.48l-.55-.01c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.44 0 1.43 1.03 2.82 1.17 3.02.14.2 2.02 3.25 4.9 4.56 2.88 1.31 2.88.87 3.4.82.52-.05 1.69-.69 1.93-1.36.24-.67.24-1.25.17-1.36-.07-.12-.26-.19-.55-.34z" fill="currentColor"></path>
+      </svg>
+      <span class="wa-badge" id="waBadge" style="display:none">1</span>
+    </button>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      
+      const spans = hamburger.querySelectorAll('span');
+      if (navLinks.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // WhatsApp Widget
+    (function(){
+      const toggle = document.getElementById('waToggle');
+      const card = document.getElementById('waCard');
+      const closePreview = document.getElementById('waClosePreview');
+      const badge = document.getElementById('waBadge');
+      const openBtn = document.getElementById('waOpenBtn');
+
+      const WA_LINK = 'https://wa.me/+12894859160?text=Hi%20I%20want%20to%20hire%20a%20hacker';
+      openBtn.setAttribute('href', WA_LINK);
+      badge.style.display = 'inline-grid';
+
+      function showPreview(){
+        card.classList.add('show');
+        card.setAttribute('aria-hidden','false');
+        toggle.setAttribute('aria-expanded','true');
+      }
+      function hidePreview(){
+        card.classList.remove('show');
+        card.setAttribute('aria-hidden','true');
+        toggle.setAttribute('aria-expanded','false');
+      }
+
+      toggle.addEventListener('click', function(e){
+        const small = window.matchMedia('(max-width:420px)').matches;
+        if(small){
+          window.open(WA_LINK,'_blank','noopener');
+          return;
+        }
+        if(card.classList.contains('show')) hidePreview(); else showPreview();
+      });
+
+      closePreview.addEventListener('click', hidePreview);
+
+      document.addEventListener('click', function(e){
+        if(!card.contains(e.target) && !toggle.contains(e.target)){
+          hidePreview();
+        }
+      }, true);
+
+      toggle.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle.click(); }
+      });
+
+      openBtn.addEventListener('click', function(){ badge.style.display = 'none'; });
+
+      window.addEventListener('load', function(){
+        if(!window.matchMedia('(max-width:420px)').matches){
+          setTimeout(()=>{ showPreview(); setTimeout(hidePreview, 3500); }, 1200);
+        }
+      });
+    })();
+
+    // Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CFBJNKSYBN', { 'anonymize_ip': true });
+  </script>
+
+  <script async src='https://www.googletagmanager.com/gtag/js?id=G-CFBJNKSYBN'></script>
 </body>
 </html>
